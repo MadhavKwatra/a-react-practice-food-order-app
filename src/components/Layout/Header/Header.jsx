@@ -8,7 +8,7 @@ const Header = (props) => {
         <h2 className="logo" href="/">
           ReactMeals
         </h2>
-        <HeaderCartButton onClickCart={props.onClickCart} />
+        <HeaderCartButton onClick={props.onShowCart} />
       </header>
       <div className={styles["main-image"]}>
         <img src={mealsImage} alt="" />
@@ -16,7 +16,8 @@ const Header = (props) => {
         {/* ways to import images 
         import imageName from "./fdf.jpg"
         require(//).default in src
-        put in public /assets/images/fdf.jpg or other folder */}
+        put in public /assets/images/fdf.jpg or other folder 
+        also src="someURlToImage in a servaer"*/}
       </div>
     </>
   );

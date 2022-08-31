@@ -29,19 +29,22 @@ const DUMMY_MEALS = [
 ];
 
 const AvailableMeals = (props) => {
+  const mealsList = DUMMY_MEALS.map((meal) => (
+    <MealItem
+      // could pass meal={meal}
+      key={meal.id}
+      id={meal.id}
+      name={meal.name}
+      description={meal.description}
+      price={meal.price}
+    />
+  ));
   return (
-    <Card className={styles.meals}>
-      <ul>
-        {DUMMY_MEALS.map((meal) => (
-          <MealItem
-            key={meal.id}
-            title={meal.name}
-            description={meal.description}
-            price={meal.price}
-          />
-        ))}
-      </ul>
-    </Card>
+    <section className={styles.meals}>
+      <Card>
+        <ul>{mealsList}</ul>
+      </Card>
+    </section>
   );
 };
 

@@ -1,27 +1,29 @@
 import React, { useState } from "react";
-import Header from "./components/Header/Header";
-import AvailableMeals from "./components/Meals/AvailableMeals/AvailableMeals";
-import MealsSummary from "./components/Meals/MealsSummary/MealsSummary";
+import Header from "./components/Layout/Header/Header";
+import Meals from "./components/Meals/Meals";
 import Cart from "./components/Cart/Cart";
+import CartProvider from "./store/CartProvider";
 
 function App() {
   const [cart, setCart] = useState({});
   const [showCart, setShowCart] = useState(false);
 
-  const cartClickHandler = () => {
+  const showCartHandler = () => {
     setShowCart(true);
   };
 
-  const cancelHandler = () => {
+  const hideCartHandler = () => {
     setShowCart(false);
   };
   return (
-    <React.Fragment>
-      <Header onClickCart={cartClickHandler} />
-      <MealsSummary />
-      <AvailableMeals />
-      {showCart && <Cart onCancel={cancelHandler} />}
-    </React.Fragment>
+    <CartProvider>
+      {/* all these components will need cart Context */}
+      {showCart && <Cart onClose={hideCartHandler} />}
+      <Header onShowCart={showCartHandler} />
+      <main>
+        <Meals />
+      </main>
+    </CartProvider>
   );
 }
 
